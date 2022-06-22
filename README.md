@@ -1,5 +1,5 @@
 # NeurIPS-CellSeg
-A naive baseline for microscopy image segmentation challenge in NeurIPS 2022
+A naive baseline for the microscopy image segmentation challenge in NeurIPS 2022
 
 
 
@@ -83,7 +83,7 @@ Test the docker to make sure it works. There should be segmentation results in t
 docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test/:/workspace/inputs/ -v $PWD/baseline_outputs/:/workspace/outputs/ baseline:latest /bin/bash -c "sh predict.sh"
 ```
 
-> During the inference, please monitor the GPU memory consumption by `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into the OOM error on the official evaluation server. We impose this hard constraint on the GPU memory consumption because most biologists do not have powerful GPUs in practice. Thus, the model should be low-resource.
+> During the inference, please monitor the GPU memory consumption using `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into an OOM error on the official evaluation server. We impose this hard constraint on GPU memory consumption to ensure ease of use, because biologists may not have powerful GPUs in practice. Thus, the model should be low-resource.
 
 
 
@@ -99,15 +99,15 @@ Upload the docker to Google drive or Baidu net disk and send the download link t
 
 ## Limitations and potential improvements
 
-The naive baseline aims to give participants out-of-the-box scripts that can generate successful submisions. Simple is our top priority rather than high performance.  Thus, there are many ways to improve this baseline:
+The naive baseline's primary aim is to give participants out-of-the-box scripts that can generate successful submisions. Thus, there are many ways to surpass this baseline:
 
-- New cell representation methods. In the base, we separated the touched cells by simply removing their boundaries, which missed the boundary pixels. More advanced cell representation could be used to address this limitation, such as [stardist](https://github.com/stardist/stardist), [cellpose](https://github.com/MouseLand/cellpose), [omnipose](https://github.com/kevinjohncutler/omnipose), [deepcell](https://github.com/vanvalenlab/deepcell-tf), and so on.
+- New cell representation methods. In the baseline, we separated touching cells by simply removing their boundaries. More advanced cell representation could be used to address this issue, such as [stardist](https://github.com/stardist/stardist), [cellpose](https://github.com/MouseLand/cellpose), [omnipose](https://github.com/kevinjohncutler/omnipose), [deepcell](https://github.com/vanvalenlab/deepcell-tf), and so on.
 - New architectures
-- More data augmentations and use [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or unlabeled data.
+- More data augmentations and the use of additional [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or the set of unlabeled data provided.
 - Well-designed training protocols
 - Postprocessing
 
-Whatever you plan to improve the baseline, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy. 
+Nevertheless, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy. 
 
 
 
