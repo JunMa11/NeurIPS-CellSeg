@@ -1,5 +1,5 @@
 # NeurIPS-CellSeg
-Naive baseline for microscopy image segmentation challenge in NeurIPS 2022
+A naive baseline for microscopy image segmentation challenge in NeurIPS 2022
 
 
 
@@ -25,7 +25,7 @@ Run
 
 `python predict.py -i input_path -o output_path`
 
-> Your prediction file should have at leat the two arguments: `input_path` and `output_path`. The two arguments are important to establish connections between local folders and docker folders.
+> Your prediction file should have at least the two arguments: `input_path` and `output_path`. The two arguments are important to establish connections between local folders and docker folders.
 
 
 
@@ -53,7 +53,7 @@ Put the inference command in the `predict.sh`
 python predict.py -i "/workspace/inputs/"  -o "/workspace/outputs/"
 ```
 
-> The `input_path` and `output_path` augments should specify the corresponding docker workspace folders rather than local folers, because we will map the local folders to the docker workspace folders when running the docker container.
+> The `input_path` and `output_path` augments should specify the corresponding docker workspace folders rather than local folders, because we will map the local folders to the docker workspace folders when running the docker container.
 
 ### 2) Build Docker and make sanity test
 
@@ -65,7 +65,7 @@ docker container run --gpus "device=0" --name teamname --rm -v $PWD/CellSeg_Test
 
 - `--name`: container name during running
 
-- `--rm`: remove container after running
+- `--rm`: remove the container after running
 - `-v $PWD/CellSeg_Test/:/workspace/inputs/`: map local image data folder to Docker `workspace/inputs` folder. 
 - `-v $PWD/teamname_outputs/:/workspace/outputs/ `: map Docker `workspace/outputs` folder to local folder. The segmentation results will be in `$PWD/teamname_outputs`
 - `teamname:latest`: docker image name (should be `teamname`) and its version tag. **The version tag should be `latest`**. Please do not use `v0`, `v1`... as the version tag
@@ -77,13 +77,13 @@ Assuming the team name is `baseline`, the Docker build command is
 
 `docker build -t baseline . `
 
-Test the docker to make sure it works. There should be segmentation resoults in the `baseline_outputs` folder.
+Test the docker to make sure it works. There should be segmentation results in the `baseline_outputs` folder.
 
 ```bash
 docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test/:/workspace/inputs/ -v $PWD/baseline_outputs/:/workspace/outputs/ baseline:latest /bin/bash -c "sh predict.sh"
 ```
 
-> During the inference, please monitor the GPU memory consumption by `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into OOM error on the official evaluation server. We use this hard contrain on the GPU memory  consumption because most biologists do not have powerful GPUs in practice. Thus, the model should be low-resource.
+> During the inference, please monitor the GPU memory consumption by `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into the OOM error on the official evaluation server. We impose this hard constraint on the GPU memory consumption because most biologists do not have powerful GPUs in practice. Thus, the model should be low-resource.
 
 
 
@@ -93,7 +93,23 @@ docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test
 
 Upload the docker to Google drive or Baidu net disk and send the download link to `NeurIPS.CellSeg@gmail.com`. 
 
-> Please **do not** upload the Dodker to dockerhub!
+> Please **do not** upload the Docker to dockerhub!
+
+
+
+## Limitations and potential improvements
+
+The naive baseline aims to give participants out-of-the-box scripts that can generate successful submisions. Simple is our top priority rather than high performance.  Thus, there are many ways to improve this baseline:
+
+- New cell representation methods. In the base, we separated the touched cells by simply removing their boundaries, which missed the boundary pixels. More advanced cell representation could be used to address this limitation, such as [stardist](https://github.com/stardist/stardist), [cellpose](https://github.com/MouseLand/cellpose), [omnipose](https://github.com/kevinjohncutler/omnipose), [deepcell](https://github.com/vanvalenlab/deepcell-tf), and so on.
+- New architectures
+- More data augmentations and use [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or unlabeled data.
+- Well-designed training protocols
+- Postprocessing
+
+Whatever you plan to improve the baseline, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy. 
+
+
 
 
 
