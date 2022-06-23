@@ -52,7 +52,7 @@ def main():
         ).to(device)
 
     if args.model_name.lower() == 'vnet':
-        model = monai.nets.VNet(
+        model = monai.networks.nets.VNet(
             spatial_dims=2,
             in_channels=3,
             out_channels=args.num_class,
