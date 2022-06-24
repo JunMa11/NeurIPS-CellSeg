@@ -29,7 +29,7 @@ def main():
     parser.add_argument('--show_overlay', required=False, default=False, action="store_true", help='save segmentation overlay')
 
     # Model parameters
-    parser.add_argument('--model_name', default='swinunetr', help='select mode: unet,vnet, unetr, swinunetr')
+    parser.add_argument('--model_name', default='swinunetr', help='select mode: unet, unetr, swinunetr')
     parser.add_argument('--num_class', default=3, type=int, help='segmentation classes')
     parser.add_argument('--input_size', default=256, type=int, help='segmentation classes')
     args = parser.parse_args()
@@ -51,13 +51,6 @@ def main():
             num_res_units=2,
         ).to(device)
 
-    if args.model_name.lower() == 'vnet':
-        model = monai.networks.nets.VNet(
-            spatial_dims=2,
-            in_channels=3,
-            out_channels=args.num_class,
-            dropout_prob=0.0
-            )    
 
     if args.model_name.lower() == 'unetr':
         model = UNETR2D(
