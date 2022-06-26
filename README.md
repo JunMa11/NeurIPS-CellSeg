@@ -1,6 +1,5 @@
 # NeurIPS-CellSeg
-A naive baseline for the microscopy image segmentation challenge in NeurIPS 2022
-
+A naive baseline and submission demo for the [microscopy image segmentation challenge in NeurIPS 2022](https://neurips22-cellseg.grand-challenge.org/)
 
 
 ## Preprocessing
