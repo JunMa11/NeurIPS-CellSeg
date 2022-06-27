@@ -30,6 +30,8 @@ Run
 
 ## Build Docker
 
+We recommend this great tutorial: https://nbviewer.org/github/ericspod/ContainersForCollaboration/blob/master/ContainersForCollaboration.ipynb
+
 ### 1) Preparation
 
 The docker is built on [MONAI](https://hub.docker.com/r/projectmonai/monai)
