@@ -1,6 +1,23 @@
 # NeurIPS-CellSeg
 A naive baseline and submission demo for the [microscopy image segmentation challenge in NeurIPS 2022](https://neurips22-cellseg.grand-challenge.org/)
 
+## Requirements
+
+```python
+MONAI version: 0.9
+Numpy version: 1.21.2
+Pytorch version: 1.10.1
+Nibabel version: 3.2.1
+scikit-image version: 0.19.2
+Pillow version: 9.0.1
+Tensorboard version: 2.8.0
+gdown version: 4.2.0
+TorchVision version: 0.11.2
+tqdm version: 4.63.0
+psutil version: 5.8.0
+pandas version: 1.4.1
+einops version: 0.3.2
+```
 
 ## Preprocessing
 
