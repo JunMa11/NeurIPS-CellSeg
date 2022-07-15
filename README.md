@@ -47,16 +47,18 @@ python baseline/model_training_3class.py --help
 Train baseline model with
 
 ```shell
-python model_training_3class.py --data_path 'path to training data' --batch_size 8
+python baseline/model_training_3class.py --data_path 'path to training data' --batch_size 8
 ```
 
 ## Inference
 
 Run
 
-`python predict.py -i input_path -o output_path`
+```shell
+python predict.py -i input_path -o output_path
+```
 
-> Your prediction file should have at least the two arguments: `input_path` and `output_path`. The two arguments are important to establish connections between local folders and docker folders.
+> Your prediction file should have at least the two arguments: `input_path` and `output_path`. The two arguments are important to establishing connections between local folders and docker folders.
 
 ## Build Docker
 
@@ -64,9 +66,11 @@ We recommend this great tutorial: https://nbviewer.org/github/ericspod/Container
 
 ### 1) Preparation
 
-The docker is built on [MONAI](https://hub.docker.com/r/projectmonai/monai)
+The docker is built based on [MONAI](https://hub.docker.com/r/projectmonai/monai)
 
-> docker pull projectmonai/monai
+```shell
+docker pull projectmonai/monai
+```
 
 Prepare `Dockerfile`
 
@@ -95,7 +99,6 @@ docker container run --gpus "device=0" --name teamname --rm -v $PWD/CellSeg_Test
 ```
 
 - `--name`: container name during running
-
 - `--rm`: remove the container after running
 - `-v $PWD/CellSeg_Test/:/workspace/inputs/`: map local image data folder to Docker `workspace/inputs` folder.
 - `-v $PWD/teamname_outputs/:/workspace/outputs/ `: map Docker `workspace/outputs` folder to local folder. The segmentation results will be in `$PWD/teamname_outputs`
@@ -104,7 +107,9 @@ docker container run --gpus "device=0" --name teamname --rm -v $PWD/CellSeg_Test
 
 Assuming the team name is `baseline`, the Docker build command is
 
-`docker build -t baseline . `
+```shell
+docker build -t baseline . 
+```
 
 Test the docker to make sure it works. There should be segmentation results in the `baseline_outputs` folder.
 
@@ -116,7 +121,9 @@ docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test
 
 ### 3) Save Docker
 
-`docker save baseline | gzip -c > baseline.tar.gz`
+```shell
+docker save baseline | gzip -c > baseline.tar.gz
+```
 
 Upload the docker to Google drive or Baidu net disk and send the download link to `NeurIPS.CellSeg@gmail.com`.
 

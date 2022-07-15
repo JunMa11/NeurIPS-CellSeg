@@ -27,13 +27,11 @@ from monai.transforms import (
     LoadImaged,
     SpatialPadd,
     RandSpatialCropd,
-    # RandCropByPosNegLabeld,
     RandRotate90d,
     ScaleIntensityd,
     RandAxisFlipd,
     RandZoomd,
     RandGaussianNoised,
-    # RandShiftIntensityd,
     RandAdjustContrastd,
     RandGaussianSmoothd,
     RandHistogramShiftd,
@@ -60,7 +58,7 @@ def main():
         help="training data path; subfolders: images, labels",
     )
     parser.add_argument(
-        "--work_dir", default="./work_dir", help="path where to save models and logs"
+        "--work_dir", default="./baseline/work_dir", help="path where to save models and logs"
     )
     parser.add_argument("--seed", default=2022, type=int)
     # parser.add_argument("--resume", default=False, help="resume from checkpoint")
