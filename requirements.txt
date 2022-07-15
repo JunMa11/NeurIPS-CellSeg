@@ -2,11 +2,11 @@ monai
 nibabel
 scikit-image
 matplotlib
-# Pillow
+Pillow
 tensorboard
-# gdown
-# torchVision
+gdown
+torchVision
 tqdm
-# psutil
-# pandas
-# einops
+psutil
+pandas
+einops
