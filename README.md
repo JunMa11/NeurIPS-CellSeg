@@ -4,22 +4,6 @@ A naive baseline and submission demo for the [microscopy image segmentation chal
 
 ## Requirements
 
-```python
-MONAI version: 0.9
-Numpy version: 1.21.2
-Pytorch version: 1.10.1
-Nibabel version: 3.2.1
-scikit-image version: 0.19.2
-Pillow version: 9.0.1
-Tensorboard version: 2.8.0
-gdown version: 4.2.0
-TorchVision version: 0.11.2
-tqdm version: 4.63.0
-psutil version: 5.8.0
-pandas version: 1.4.1
-einops version: 0.3.2
-```
-
 Install requirements by
 
 ```shell
@@ -60,6 +44,18 @@ python predict.py -i input_path -o output_path
 
 > Your prediction file should have at least the two arguments: `input_path` and `output_path`. The two arguments are important to establishing connections between local folders and docker folders.
 
+## Compute Evaluation Metric (F1 Score)
+
+Run
+
+```shell
+python compute_metric.py --gt_path path_to_labels --seg_path path_to_segmentation
+```
+
+> Cells on the boundaries are not considered during evaluation.
+
+
+
 ## Build Docker
 
 We recommend this great tutorial: https://nbviewer.org/github/ericspod/ContainersForCollaboration/blob/master/ContainersForCollaboration.ipynb
@@ -95,13 +91,15 @@ python predict.py -i "/workspace/inputs/"  -o "/workspace/outputs/"
 The submitted docker will be evaluated by the following command:
 
 ```bash
-docker container run --gpus "device=0" --name teamname --rm -v $PWD/CellSeg_Test/:/workspace/inputs/ -v $PWD/teamname_outputs/:/workspace/outputs/ teamname:latest /bin/bash -c "sh predict.sh"
+docker container run --gpus "device=0" -m 28G --name teamname --rm -v $PWD/CellSeg_Test/:/workspace/inputs/ -v $PWD/teamname_seg/:/workspace/outputs/ teamname:latest /bin/bash -c "sh predict.sh"
 ```
 
+- `--gpus`: specify the available GPU during inference
+- `-m`: spedify the maximum RAM
 - `--name`: container name during running
 - `--rm`: remove the container after running
 - `-v $PWD/CellSeg_Test/:/workspace/inputs/`: map local image data folder to Docker `workspace/inputs` folder.
-- `-v $PWD/teamname_outputs/:/workspace/outputs/ `: map Docker `workspace/outputs` folder to local folder. The segmentation results will be in `$PWD/teamname_outputs`
+- `-v $PWD/teamname_seg/:/workspace/outputs/ `: map Docker `workspace/outputs` folder to local folder. The segmentation results will be in `$PWD/teamname_outputs`
 - `teamname:latest`: docker image name (should be `teamname`) and its version tag. **The version tag should be `latest`**. Please do not use `v0`, `v1`... as the version tag
 - `/bin/bash -c "sh predict.sh"`: start the prediction command. It will load testing images from `workspace/inputs` and save the segmentation results to `workspace/outputs`
 
@@ -111,13 +109,13 @@ Assuming the team name is `baseline`, the Docker build command is
 docker build -t baseline . 
 ```
 
-Test the docker to make sure it works. There should be segmentation results in the `baseline_outputs` folder.
+Test the docker to make sure it works. There should be segmentation results in the `baseline_seg` folder.
 
 ```bash
-docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test/:/workspace/inputs/ -v $PWD/baseline_outputs/:/workspace/outputs/ baseline:latest /bin/bash -c "sh predict.sh"
+docker container run --gpus "device=0" -m 28G --name baseline --rm -v $PWD/TuningSet/:/workspace/inputs/ -v $PWD/baseline_seg/:/workspace/outputs/ baseline:latest /bin/bash -c "sh predict.sh"
 ```
 
-> During the inference, please monitor the GPU memory consumption using `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into an OOM error on the official evaluation server. We impose this hard constraint on GPU memory consumption to ensure ease of use, because biologists may not have powerful GPUs in practice. Thus, the model should be low-resource.
+> During the inference, please monitor the GPU memory consumption using `watch nvidia-smi`. The GPU memory consumption should be less than 10G. Otherwise, it will run into an OOM error on the official evaluation server. 
 
 ### 3) Save Docker
 
@@ -125,7 +123,7 @@ docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test
 docker save baseline | gzip -c > baseline.tar.gz
 ```
 
-Upload the docker to Google drive or Baidu net disk and send the download link to `NeurIPS.CellSeg@gmail.com`.
+Upload the docker to Google drive ([example](https://drive.google.com/file/d/1CQRP6yvv9le7m8k7PI_CR6iZAo4vVTt8/view?usp=sharing)) or Baidu net disk ([example]()) and send the download link to `NeurIPS.CellSeg@gmail.com`.
 
 > Please **do not** upload the Docker to dockerhub!
 
@@ -138,5 +136,3 @@ The naive baseline's primary aim is to give participants out-of-the-box scripts 
 - More data augmentations and the use of additional [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or the set of unlabeled data provided.
 - Well-designed training protocols
 - Postprocessing
-
-Nevertheless, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy.
