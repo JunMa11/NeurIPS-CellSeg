@@ -12,10 +12,12 @@ convert instance labels to three class labels:
 
 import os
 join = os.path.join
+import argparse
+
 from skimage import io, segmentation, morphology, exposure
 import numpy as np
 import tifffile as tif
-import argparse
+from tqdm import tqdm
 
 def normalize_channel(img, lower=1, upper=99):
     non_zero_vals = img[np.nonzero(img)]
@@ -55,8 +57,8 @@ def create_interior_map(inst_map):
     
 def main():
     parser = argparse.ArgumentParser('Preprocessing for microscopy image segmentation', add_help=False)
-    parser.add_argument('-i', '--input_path', default='./Train_Labeled', type=str, help='training data path; subfolders: images, labels')
-    parser.add_argument("-o", '--output_path', default='./Train_Pre_3class', type=str, help='preprocessing data path')    
+    parser.add_argument('-i', '--input_path', default='./data/Train_Labeled', type=str, help='training data path; subfolders: images, labels')
+    parser.add_argument("-o", '--output_path', default='./data/Train_Pre_3class', type=str, help='preprocessing data path')    
     args = parser.parse_args()
     
     source_path = args.input_path
@@ -73,7 +75,7 @@ def main():
     os.makedirs(pre_img_path, exist_ok=True)
     os.makedirs(pre_gt_path, exist_ok=True)
     
-    for img_name, gt_name in zip(img_names, gt_names):
+    for img_name, gt_name in zip(tqdm(img_names), gt_names):
         if img_name.endswith('.tif') or img_name.endswith('.tiff'):
             img_data = tif.imread(join(img_path, img_name))
         else:

@@ -1,4 +1,5 @@
 # NeurIPS-CellSeg
+
 A naive baseline and submission demo for the [microscopy image segmentation challenge in NeurIPS 2022](https://neurips22-cellseg.grand-challenge.org/)
 
 ## Requirements
@@ -19,21 +20,35 @@ pandas version: 1.4.1
 einops version: 0.3.2
 ```
 
+Install requirements by
+
+```shell
+python -m pip install -r requirements.txt
+```
+
 ## Preprocessing
 
 Download training data to the `data` folder
 
-Run `python pre_process_3class.py`
+Preprocess dataset with
 
-
+```shell
+python data/pre_process_3class.py
+```
 
 ## Training
 
-`cd baseline`
+See all training options with
 
-Run `python model_training_3class.py --data_path 'path to training data' --batch_size 8`
+```shell
+python baseline/model_training_3class.py --help
+```
 
+Train baseline model with
 
+```shell
+python model_training_3class.py --data_path 'path to training data' --batch_size 8
+```
 
 ## Inference
 
@@ -42,8 +57,6 @@ Run
 `python predict.py -i input_path -o output_path`
 
 > Your prediction file should have at least the two arguments: `input_path` and `output_path`. The two arguments are important to establish connections between local folders and docker folders.
-
-
 
 ## Build Docker
 
@@ -84,14 +97,12 @@ docker container run --gpus "device=0" --name teamname --rm -v $PWD/CellSeg_Test
 - `--name`: container name during running
 
 - `--rm`: remove the container after running
-- `-v $PWD/CellSeg_Test/:/workspace/inputs/`: map local image data folder to Docker `workspace/inputs` folder. 
+- `-v $PWD/CellSeg_Test/:/workspace/inputs/`: map local image data folder to Docker `workspace/inputs` folder.
 - `-v $PWD/teamname_outputs/:/workspace/outputs/ `: map Docker `workspace/outputs` folder to local folder. The segmentation results will be in `$PWD/teamname_outputs`
 - `teamname:latest`: docker image name (should be `teamname`) and its version tag. **The version tag should be `latest`**. Please do not use `v0`, `v1`... as the version tag
 - `/bin/bash -c "sh predict.sh"`: start the prediction command. It will load testing images from `workspace/inputs` and save the segmentation results to `workspace/outputs`
 
-
-
-Assuming the team name is `baseline`, the Docker build command is 
+Assuming the team name is `baseline`, the Docker build command is
 
 `docker build -t baseline . `
 
@@ -103,17 +114,13 @@ docker container run --gpus "device=0" --name baseline --rm -v $PWD/CellSeg_Test
 
 > During the inference, please monitor the GPU memory consumption using `watch nvidia-smi`. The GPU memory consumption should be less than 1500MB. Otherwise, it will run into an OOM error on the official evaluation server. We impose this hard constraint on GPU memory consumption to ensure ease of use, because biologists may not have powerful GPUs in practice. Thus, the model should be low-resource.
 
-
-
 ### 3) Save Docker
 
 `docker save baseline | gzip -c > baseline.tar.gz`
 
-Upload the docker to Google drive or Baidu net disk and send the download link to `NeurIPS.CellSeg@gmail.com`. 
+Upload the docker to Google drive or Baidu net disk and send the download link to `NeurIPS.CellSeg@gmail.com`.
 
 > Please **do not** upload the Docker to dockerhub!
-
-
 
 ## Limitations and potential improvements
 
@@ -125,11 +132,4 @@ The naive baseline's primary aim is to give participants out-of-the-box scripts 
 - Well-designed training protocols
 - Postprocessing
 
-Nevertheless, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy. 
-
-
-
-
-
-
-
+Nevertheless, please always keep in mind that many end users do not have powerful computation resources. It's important to consider the trade-off between resource consumption and accuracy.

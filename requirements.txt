@@ -1,0 +1,12 @@
+monai
+nibabel
+scikit-image
+matplotlib
+# Pillow
+tensorboard
+# gdown
+# torchVision
+tqdm
+# psutil
+# pandas
+# einops
