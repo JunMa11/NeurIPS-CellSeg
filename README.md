@@ -136,3 +136,8 @@ The naive baseline's primary aim is to give participants out-of-the-box scripts 
 - More data augmentations and the use of additional [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or the set of unlabeled data provided.
 - Well-designed training protocols
 - Postprocessing
+
+## Extension
+
+- [Napari plugin](https://git.linhan.ml/linhandev/monai-app)
+- [MONAI APP](https://github.com/YaoZhang93/napari-cellseg)
