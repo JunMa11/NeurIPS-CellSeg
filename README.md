@@ -139,5 +139,5 @@ The naive baseline's primary aim is to give participants out-of-the-box scripts 
 
 ## Extension
 
-- [Napari plugin](https://git.linhan.ml/linhandev/monai-app)
-- [MONAI APP](https://github.com/YaoZhang93/napari-cellseg)
+- [MONAI APP](https://git.linhan.ml/linhandev/monai-app)
+- [Napari plugin](https://github.com/YaoZhang93/napari-cellseg)
