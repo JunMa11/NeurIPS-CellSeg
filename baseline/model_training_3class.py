@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import shutil
 
-from models.unetr2d import UNETR2D
+from baseline.models.unetr2d import UNETR2D
 
 print("Successfully imported all requirements!")
 
