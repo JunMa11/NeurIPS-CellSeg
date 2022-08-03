@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import monai
 from monai.inferers import sliding_window_inference
-from models.unetr2d import UNETR2D
+from baseline.models.unetr2d import UNETR2D
 import time
 from skimage import io, segmentation, morphology, measure, exposure
 import tifffile as tif
