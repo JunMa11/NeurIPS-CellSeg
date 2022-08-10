@@ -20,6 +20,10 @@ Preprocess dataset with
 python data/pre_process_3class.py
 ```
 
+> We convert the instance label in ground truth to a three-class label (0-background, 1-interior, 2-edge). After the segmentation, we can convert the three-class label map to an instance map by `skimage.measure.label`. 
+
+> Please always keep in mind that this is a instance segmentation task. The baseline is a very simple and naive solution. We highly recommend trying the state-of-the-art methods that mentioned in the end.
+
 ## Training
 
 See all training options with
@@ -131,7 +135,7 @@ Upload the docker to Google drive ([example](https://drive.google.com/file/d/1CQ
 
 The naive baseline's primary aim is to give participants out-of-the-box scripts that can generate successful submisions. Thus, there are many ways to surpass this baseline:
 
-- New cell representation methods. In the baseline, we separated touching cells by simply removing their boundaries. More advanced cell representation could be used to address this issue, such as [stardist](https://github.com/stardist/stardist), [cellpose](https://github.com/MouseLand/cellpose), [omnipose](https://github.com/kevinjohncutler/omnipose), [deepcell](https://github.com/vanvalenlab/deepcell-tf), and so on.
+- New cell representation methods. In the baseline, we separated touching cells by simply removing their boundaries. More advanced cell representation could be used to address this issue, such as [stardist](https://github.com/stardist/stardist), [cellpose](https://github.com/MouseLand/cellpose), [omnipose](https://github.com/kevinjohncutler/omnipose), [deepcell](https://github.com/vanvalenlab/deepcell-tf), and so on. **We highly recommend trying these SOTA methods.**
 - New architectures
 - More data augmentations and the use of additional [public datasets](https://grand-challenge.org/forums/forum/weakly-supervised-cell-segmentation-in-multi-modality-microscopy-673/topic/official-external-datasets-thread-720/) or the set of unlabeled data provided.
 - Well-designed training protocols
