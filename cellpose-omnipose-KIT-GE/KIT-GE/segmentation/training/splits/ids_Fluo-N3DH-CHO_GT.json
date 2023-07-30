@@ -1,0 +1,31 @@
+{
+  "train": [
+    "Fluo-N3DH-CHO_GT_01_016_00_00",
+    "Fluo-N3DH-CHO_GT_01_085_00_00",
+    "Fluo-N3DH-CHO_GT_02_023_00_00",
+    "Fluo-N3DH-CHO_GT_02_053_00_00",
+    "Fluo-N3DH-CHO_GT_01_026_00_00",
+    "Fluo-N3DH-CHO_GT_01_089_00_00",
+    "Fluo-N3DH-CHO_GT_01_035_00_00",
+    "Fluo-N3DH-CHO_GT_01_091_00_00",
+    "Fluo-N3DH-CHO_GT_02_084_00_00",
+    "Fluo-N3DH-CHO_GT_02_050_00_00",
+    "Fluo-N3DH-CHO_GT_02_059_00_00",
+    "Fluo-N3DH-CHO_GT_02_001_00_00",
+    "Fluo-N3DH-CHO_GT_02_005_00_00",
+    "Fluo-N3DH-CHO_GT_02_056_00_00",
+    "Fluo-N3DH-CHO_GT_01_043_00_00",
+    "Fluo-N3DH-CHO_GT_01_074_00_00",
+    "Fluo-N3DH-CHO_GT_01_017_00_00",
+    "Fluo-N3DH-CHO_GT_02_029_00_00",
+    "Fluo-N3DH-CHO_GT_02_046_00_00",
+    "Fluo-N3DH-CHO_GT_01_037_00_00"
+  ],
+  "val": [
+    "Fluo-N3DH-CHO_GT_02_009_00_00",
+    "Fluo-N3DH-CHO_GT_02_019_00_00",
+    "Fluo-N3DH-CHO_GT_02_054_00_00",
+    "Fluo-N3DH-CHO_GT_02_070_00_00",
+    "Fluo-N3DH-CHO_GT_02_080_00_00"
+  ]
+}

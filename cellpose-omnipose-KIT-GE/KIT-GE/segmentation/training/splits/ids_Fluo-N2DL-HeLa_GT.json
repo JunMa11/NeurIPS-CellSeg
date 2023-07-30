@@ -1,0 +1,30 @@
+{
+  "train": [
+    "Fluo-N2DL-HeLa_GT_02_079_01_02",
+    "Fluo-N2DL-HeLa_GT_01_052_01_01",
+    "Fluo-N2DL-HeLa_GT_02_075_01_01",
+    "Fluo-N2DL-HeLa_GT_01_013_00_01",
+    "Fluo-N2DL-HeLa_GT_01_052_00_01",
+    "Fluo-N2DL-HeLa_GT_01_013_01_00",
+    "Fluo-N2DL-HeLa_GT_02_075_00_00",
+    "Fluo-N2DL-HeLa_GT_02_079_01_00",
+    "Fluo-N2DL-HeLa_GT_02_075_00_02",
+    "Fluo-N2DL-HeLa_GT_01_013_00_02",
+    "Fluo-N2DL-HeLa_GT_01_013_00_00",
+    "Fluo-N2DL-HeLa_GT_01_052_00_02",
+    "Fluo-N2DL-HeLa_GT_02_079_01_01",
+    "Fluo-N2DL-HeLa_GT_02_079_00_01",
+    "Fluo-N2DL-HeLa_GT_01_052_00_00",
+    "Fluo-N2DL-HeLa_GT_02_075_01_00",
+    "Fluo-N2DL-HeLa_GT_01_013_01_02",
+    "Fluo-N2DL-HeLa_GT_01_052_01_00",
+    "Fluo-N2DL-HeLa_GT_01_052_01_02"
+  ],
+  "val": [
+    "Fluo-N2DL-HeLa_GT_02_079_00_00",
+    "Fluo-N2DL-HeLa_GT_01_013_01_01",
+    "Fluo-N2DL-HeLa_GT_02_075_00_01",
+    "Fluo-N2DL-HeLa_GT_02_079_00_02",
+    "Fluo-N2DL-HeLa_GT_02_075_01_02"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "train": [
+    "PhC-C2DL-PSC_GT_01_098_01_00",
+    "PhC-C2DL-PSC_GT_02_182_00_00",
+    "PhC-C2DL-PSC_GT_02_025_01_00",
+    "PhC-C2DL-PSC_GT_02_182_01_00",
+    "PhC-C2DL-PSC_GT_01_098_00_00",
+    "PhC-C2DL-PSC_GT_02_025_01_01",
+    "PhC-C2DL-PSC_GT_01_122_01_01",
+    "PhC-C2DL-PSC_GT_02_025_00_01",
+    "PhC-C2DL-PSC_GT_01_098_01_01",
+    "PhC-C2DL-PSC_GT_02_182_00_01",
+    "PhC-C2DL-PSC_GT_02_182_01_01",
+    "PhC-C2DL-PSC_GT_01_098_00_01",
+    "PhC-C2DL-PSC_GT_01_122_00_01"
+  ],
+  "val": [
+    "PhC-C2DL-PSC_GT_01_122_01_00",
+    "PhC-C2DL-PSC_GT_01_122_00_00",
+    "PhC-C2DL-PSC_GT_02_025_00_00"
+  ]
+}
