@@ -1,6 +1,11 @@
 # NeurIPS-CellSeg
 
-A naive baseline and submission demo for the [microscopy image segmentation challenge in NeurIPS 2022](https://neurips22-cellseg.grand-challenge.org/)
+A naive U-Net baseline and submission demo for the [microscopy image segmentation challenge in NeurIPS 2022](https://neurips22-cellseg.grand-challenge.org/)
+
+News: 
+
+- The competition proceeding has been published on PMLR https://proceedings.mlr.press/v212/
+- Winning algorithms have been publicly available at https://neurips22-cellseg.grand-challenge.org/awards/
 
 ## Requirements
 
